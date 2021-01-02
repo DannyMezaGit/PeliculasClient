@@ -1,0 +1,15 @@
+<app-listado-generico [listado]="peliculas">
+    <ng-container contenido>
+        <div *ngFor	= "let pelicula of peliculas" class="pelicula-contenedor">
+            <div>
+              <h2>{{pelicula.titulo}}</h2>
+            </div>
+            <div>
+              {{pelicula.fechaLanzamiento | date: "dd-MMMM-yyyy"}}
+            </div>
+            <div>
+              {{pelicula.precio}}
+            </div>
+          </div>
+    </ng-container>
+</app-listado-generico>
