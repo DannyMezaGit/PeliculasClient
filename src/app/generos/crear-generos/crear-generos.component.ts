@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { primeraLetraMayuscula } from 'src/app/utilidades/validadores/primeraLetraMayuscula';
 
 @Component({
   selector: 'app-crear-generos',
@@ -18,7 +19,7 @@ export class CrearGenerosComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       nombre: ['', {
-        validators: [Validators.required, Validators.minLength(3)]
+        validators: [Validators.required, Validators.minLength(3), primeraLetraMayuscula()]
       }]
     });
   }
@@ -37,7 +38,9 @@ export class CrearGenerosComponent implements OnInit {
     if (campo.hasError('minlength')) {
       return "La longitud mínima es 3"
     }
-
+    if (campo.hasError('primeraLetraMayuscula')) {
+      return campo.getError('primeraLetraMayuscula').mensaje;
+    }
     return '';
   }
 }
