@@ -1,15 +1,22 @@
 <app-listado-generico [listado]="peliculas">
     <ng-container contenido>
+      <div class="peliculas-contenedor">
+        
         <div *ngFor	= "let pelicula of peliculas" class="pelicula-contenedor">
+            <a href="#">
+              <img [src]="pelicula.poster" alt="Poster">
+            </a>
+            <p>
+              <a href="#">{{pelicula.titulo}}</a>
+            </p>
             <div>
-              <h2>{{pelicula.titulo}}</h2>
+              <a href="#" mat-flat-button color="primary"> Editar </a>
+              <button mat-flat-button color="warn" type="button">
+                Borrar
+              </button>
             </div>
-            <div>
-              {{pelicula.fechaLanzamiento | date: "dd-MMMM-yyyy"}}
-            </div>
-            <div>
-              {{pelicula.precio}}
-            </div>
-          </div>
+
+        </div>
+      </div>
     </ng-container>
 </app-listado-generico>
