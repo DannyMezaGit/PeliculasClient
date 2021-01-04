@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { actorCreacionDTO } from '../actor';
+import { actorCreacionDTO, actorDTO } from '../actor';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class FormularioActoresComponent implements OnInit {
   form: FormGroup;
 
   @Input()
-  modelo: actorCreacionDTO;
+  modelo: actorDTO;
 
   @Output()
   submit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>()
@@ -25,13 +25,18 @@ export class FormularioActoresComponent implements OnInit {
     this.form =this.formBuilder.group({
 
       nombre: ['', {validators: [Validators.required]}],
-      fechaNacimiento: ''
+      fechaNacimiento: '',
+      foto: ''
 
     });
 
     if (this.modelo !== undefined) {
       this.form.patchValue(this.modelo);
     }
+  }
+
+  archivoSeleccionado(file) {
+    this.form.get('foto').setValue(file);
   }
 
   onSubmit(){
