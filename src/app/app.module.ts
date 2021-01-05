@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MarkdownModule} from 'ngx-markdown';
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
+import 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/images/marker-icon-2x.png';
 
 
 import { AppComponent } from './app.component';
