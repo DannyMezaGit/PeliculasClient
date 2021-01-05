@@ -21,7 +21,12 @@ export class FormularioCineComponent implements OnInit {
     this.form = this.formBuilder.group({
       nombre: ['', {validators: [Validators.required]}]
     });
+    
+    if(this.modelo !== undefined) {
+      this.form.patchValue(this.modelo);
+    }
   }
+
 
   OnSubmit() {
     this.guardarCambios.emit(this.form.value);
