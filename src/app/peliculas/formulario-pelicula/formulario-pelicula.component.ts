@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MultipleSelectorModel } from 'src/app/utilidades/selector-multiple/multipleSelectorModel';
 import { PeliculaCreacionDTO, PeliculaDTO } from '../pelicula';
 
 
@@ -17,6 +18,15 @@ export class FormularioPeliculaComponent implements OnInit {
   
   @Output()
   OnSubmit: EventEmitter<PeliculaCreacionDTO> = new EventEmitter<PeliculaCreacionDTO>();
+
+  generosNoSeleccionados: MultipleSelectorModel[] = [
+    {llave: 1, valor:'Drama'}, 
+    {llave: 2, valor: 'Acción'},
+    {llave: 3, valor: 'Comedia'}
+  ];
+
+  generosSeleccionados: MultipleSelectorModel[ ] = [];
+  
   form: FormGroup;
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -26,6 +36,8 @@ export class FormularioPeliculaComponent implements OnInit {
       trailer: [ '', { validators: [Validators.required]}],
       fechaLanzamiento: [ '', { validators: [Validators.required]}],
       poster: [ '', { validators: [Validators.required]}],
+      generosId: [ '', { validators: [Validators.required]}],
+      
     });
     
     if(this.modelo !== undefined) {
@@ -42,5 +54,7 @@ export class FormularioPeliculaComponent implements OnInit {
   }
   guardarCambios() {
     this.OnSubmit.emit(this.form.value);
+    const generosIds = this.generosSeleccionados.map(val => val.llave)
+    this.form.get('generosId').setValue(generosIds);
   }
 }
