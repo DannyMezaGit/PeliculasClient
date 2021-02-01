@@ -106,6 +106,7 @@ export class FiltroPeliculasComponent implements OnInit {
 
   limpiar() {
     this.form.patchValue(this.formularioOriginal);
+    
   }
 
 }
