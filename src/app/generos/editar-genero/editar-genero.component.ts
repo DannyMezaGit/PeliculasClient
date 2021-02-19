@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { generoCreacionDTO } from '../genero';
+import { generoDTO } from '../genero';
 
 @Component({
   selector: 'app-editar-genero',
@@ -11,11 +11,11 @@ export class EditarGeneroComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  modelo: generoCreacionDTO = {nombre: 'Drama'}
+  modelo: generoDTO = {id: 1, nombre: 'Drama'}
 
   ngOnInit(): void {
   }
-  guardarCambios(genero: generoCreacionDTO) {
+  guardarCambios(genero: generoDTO) {
     // guardamos los cambios
     console.log(genero);
     this.router.navigate(['/generos']);
