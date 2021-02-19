@@ -13,8 +13,8 @@ export class GenerosService {
   constructor(private _http: HttpClient) { }
 
 
-  public obtenerTodos(): Observable<generoDTO[]> {
-    return this._http.get<generoDTO[]>(this._apiURL);
+  public obtenerTodos(): Observable<any> {
+    return this._http.get<any>(this._apiURL, {observe: 'response'});
   }
 
   public crear(genero: Partial<generoDTO>) {
